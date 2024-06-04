@@ -2,7 +2,7 @@ import { log } from "console";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 
-const prisma = PrismaClient();
+// const prisma = PrismaClient();
 const app: express.Application = express();
 
 app.get("/api/v1/user/signup", async (req, res) => {
@@ -10,13 +10,6 @@ app.get("/api/v1/user/signup", async (req, res) => {
   res.status(200).send("hello from signup");
 
   const body = req.body;
-  await prisma.user.create({
-    data: {
-      username: body.user,
-      password: body.password,
-      name: body.name,
-    },
-  });
 });
 
 app.post("/api/v1/user/signin", (req, res) => {
