@@ -2,14 +2,24 @@ import { log } from "console";
 import express from "express";
 import { PrismaClient } from "@prisma/client";
 
-// const prisma = PrismaClient();
+const prisma = new PrismaClient();
 const app: express.Application = express();
 
 app.get("/api/v1/user/signup", async (req, res) => {
-  console.log("hii");
-  res.status(200).send("hello from signup");
-
   const body = req.body;
+
+  try {
+    await prisma.user.create({
+      data: {
+        username: body.username,
+        password: body.username,
+        name: body.name,
+      },
+    });
+    console.log("signed up");
+  } catch (e) {
+    res.status(411).send("Invalid");
+  }
 });
 
 app.post("/api/v1/user/signin", (req, res) => {
@@ -33,5 +43,5 @@ app.get("/api/v1/blog/bulk", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("running");
+  console.log("running....");
 });
