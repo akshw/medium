@@ -1,7 +1,7 @@
 import { Client } from "pg";
 
 const connectionString =
-  "postgresql://postgres:mysecretpassword@localhost:5432/postgres";
+  "postgresql://neondb_owner:VEm8gM6YztpW@ep-red-fog-a531rbo7.us-east-2.aws.neon.tech/neondb?sslmode=require";
 
 const client = new Client({
   connectionString: connectionString,
